@@ -132,11 +132,6 @@
             cursor: pointer;
         }
         
-        /* Shorts Aspect Ratio (9:16 approx or just tall) */
-        .shorts-aspect {
-            padding-bottom: 177.77%; 
-        }
-        
         /* Standard Aspect Ratio (16:9) */
         .standard-aspect {
             padding-bottom: 56.25%;
@@ -240,7 +235,7 @@
             <p class="mt-8 max-w-5xl mx-auto text-xl sm:text-2xl text-gray-100 font-medium leading-relaxed drop-shadow-lg text-shadow-sm">
                 <span class="highlight bg-blue-600 text-white px-3 shadow-lg transform hover:scale-105 inline-block transition cursor-default">정진혁 교수</span>의 <span class="highlight bg-yellow-400 text-black px-3 shadow-lg transform hover:scale-105 inline-block transition cursor-default">1.5만 시간</span> 압도적 실전 노하우와<br class="hidden lg:block">
                 독보적인 <span class="text-yellow-300 font-black underline decoration-4 underline-offset-8 decoration-blue-500/50">AI-PBL(프로젝트 기반 학습)</span> 교육법으로<br>
-                당신을 누구도 대체할 수 없는 <strong>'AI 융합비즈니스 전문가’</strong>이자 <strong>'AI 활용 문제해결사</strong>로 성장시킵니다.
+                당신을 누구도 대체할 수 없는 <strong>'AI 악셀러레이터'</strong>이자 <strong>'AI 철학자'</strong>로 성장시킵니다.
             </p>
 
             <div class="mt-16 flex flex-col sm:flex-row justify-center gap-8">
@@ -259,31 +254,29 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex flex-col lg:flex-row gap-20 items-center">
                 
-                <!-- Video Profile Column (JS Video Loader - Shorts) -->
+                <!-- Profile Image Column (Changed from Video to Image) -->
                 <div class="w-full lg:w-4/12 reveal">
                     <div class="relative group mb-6">
                         <!-- Decorative blurred background -->
                         <div class="absolute -inset-6 bg-gradient-to-tr from-blue-600 to-emerald-400 rounded-[3rem] blur-xl opacity-40 group-hover:opacity-60 transition duration-1000"></div>
                         
-                        <!-- Click-to-Play Video Container -->
-                        <!-- Video ID: 6xMgpKbobfk -->
-                        <div class="video-wrapper shorts-aspect border-8 border-white" onclick="loadVideo(this, '6xMgpKbobfk')">
-                            <img src="https://img.youtube.com/vi/6xMgpKbobfk/hqdefault.jpg" alt="정진혁 교수 소개 썸네일">
-                            <div class="play-button">
-                                <i class="fas fa-play text-white text-3xl ml-1"></i>
-                            </div>
-                            <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-6 text-center pointer-events-none">
+                        <!-- Profile Image Container -->
+                        <div class="relative rounded-[2rem] overflow-hidden shadow-2xl border-8 border-white bg-black z-10">
+                            <img src="https://github.com/aicufarmaster/aicaroline/raw/main/aiprofessor.JPG" 
+                                 alt="정진혁 교수 프로필" 
+                                 class="w-full h-auto object-cover transform transition duration-500 group-hover:scale-105"
+                                 onerror="this.src='https://placehold.co/600x800/1e3a8a/ffffff?text=Prof.+Jeong'">
+                            <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-6 text-center">
                                 <h3 class="text-white text-2xl font-bold">정진혁 교수</h3>
                                 <p class="text-blue-300 font-medium">AI 비즈니스융합학과</p>
-                                <p class="text-gray-400 text-sm mt-1 animate-pulse">클릭하여 영상 재생</p>
                             </div>
                         </div>
                     </div>
 
-                    <!-- Additional Youtube Play Button for Shorts -->
+                    <!-- YouTube Link Button (Renamed) -->
                     <div class="text-center mb-10">
                         <a href="https://youtube.com/shorts/6xMgpKbobfk?si=ILQlImojCKt8JJlV" target="_blank" class="inline-flex items-center px-6 py-3 bg-red-600 text-white font-bold rounded-xl hover:bg-red-700 transition shadow-lg hover:shadow-xl transform hover:-translate-y-1">
-                            <i class="fab fa-youtube mr-2 text-xl"></i> 유튜브에서 바로 보기
+                            <i class="fab fa-youtube mr-2 text-xl"></i> 유튜브 인사말 보기
                         </a>
                     </div>
                     
@@ -308,7 +301,7 @@
                 <div class="w-full lg:w-8/12 reveal">
                     <div class="mb-12 pl-8 border-l-8 border-blue-600">
                         <h2 class="text-4xl md:text-6xl font-black text-gray-900 leading-tight mb-6">
-                            AI 악셀러레이터이자<br>AI 철학자, <span class="text-blue-700">정진혁</span>
+                            AI 비즈니스 악셀러레이터이자<br>AI 철학자, <span class="text-blue-700">정진혁</span>
                         </h2>
                         <p class="text-2xl md:text-3xl text-gray-600 font-bold italic leading-relaxed">
                             "AI는 단순한 도구가 아닙니다.<br>인간의 한계를 확장하고<br>새로운 르네상스를 여는 <span class="bg-yellow-200 px-2">진정한 파트너</span>입니다."
@@ -503,7 +496,7 @@
                         </div>
                         <h3 class="text-3xl font-black text-gray-900 mb-8">인공지능 리터러시 (AI Literacy)</h3>
                         <p class="text-xl text-gray-600 leading-loose mb-8">
-                            AI 리터러시는 단순히 생성형 AI 사용법을 배우는 것이 아닙니다. <strong>AI를 이해하고, 그 결과를 비판적으로 평가하며, 비즈니스 목적에 맞게 효과적으로 통제하는 능력</strong>입니다.
+                            AI 리터러시는 단순히 챗GPT 사용법을 배우는 것이 아닙니다. <strong>AI를 이해하고, 그 결과를 비판적으로 평가하며, 비즈니스 목적에 맞게 효과적으로 통제하는 능력</strong>입니다.
                         </p>
                         <ul class="space-y-6 text-gray-700 text-xl">
                             <li class="flex items-start"><i class="fas fa-check-circle text-green-500 mt-1 mr-4 text-2xl"></i> AI 작동 원리와 한계에 대한 명확한 이해</li>
@@ -601,7 +594,7 @@
                 </div>
                 <div class="bg-gray-50 p-10 rounded-[2.5rem] hover:bg-white hover:shadow-2xl transition duration-300 border border-transparent hover:border-gray-200 group">
                     <h4 class="font-black text-gray-900 text-2xl mb-4 flex items-center group-hover:text-blue-600 transition"><span class="w-10 h-10 bg-blue-600 text-white rounded-full flex items-center justify-center text-base mr-4 shadow-lg">2</span> AI 리터러시 2<br>(기초 및 심화 활용)</h4>
-                    <p class="text-lg text-gray-600 leading-relaxed">ChatGPT, ChatGPT, Claude 등 <strong>생성형 AI의 프롬프트 엔지니어링</strong>을 마스터합니다. 업무 자동화와 생산성을 10배 높이는 실전 도구 활용법을 전수합니다.</p>
+                    <p class="text-lg text-gray-600 leading-relaxed">ChatGPT, Claude, Midjourney 등 <strong>생성형 AI의 프롬프트 엔지니어링</strong>을 마스터합니다. 업무 자동화와 생산성을 10배 높이는 실전 도구 활용법을 전수합니다.</p>
                 </div>
                 <div class="bg-white p-10 rounded-[2.5rem] shadow-2xl border-4 border-blue-600 relative overflow-hidden group">
                     <div class="absolute top-0 right-0 bg-blue-600 text-white text-sm font-bold px-4 py-2 rounded-bl-xl shadow-md">핵심 과목</div>
@@ -655,7 +648,7 @@
                                 <span class="block font-black text-blue-900 text-2xl mb-1">2025년 특별 고정 학비</span>
                                 <span class="text-base text-blue-600 font-bold"><i class="fas fa-lock mr-1"></i>환율 무관 고정</span>
                             </div>
-                            <span class="text-5xl font-black text-blue-600 tracking-tight">600만원</span>
+                            <span class="text-5xl font-black text-blue-600 tracking-tight">600만원 내외</span>
                         </div>
                         <p class="text-base text-gray-500 font-medium text-center bg-gray-50 py-3 rounded-xl border border-gray-100"><i class="fas fa-exclamation-circle mr-2"></i>2026년부터는 정책에 따라 변동 가능성이 있습니다.</p>
                     </div>
