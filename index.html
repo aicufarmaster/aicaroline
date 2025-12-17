@@ -12,202 +12,332 @@
         body {
             font-family: 'Pretendard', sans-serif;
             scroll-behavior: smooth;
+            font-size: 19px;
+            line-height: 1.8;
+            word-break: keep-all;
         }
-        .hero-bg {
-            background: linear-gradient(135deg, #020617 0%, #1e3a8a 60%, #1e40af 100%);
+        
+        /* Highlight Text Effects */
+        .highlight {
+            background: linear-gradient(120deg, #fef08a 0%, #fde047 100%);
+            color: #854d0e;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-weight: 800;
+            box-decoration-break: clone;
+            -webkit-box-decoration-break: clone;
+            box-shadow: 0 2px 4px rgba(234, 179, 8, 0.2);
+        }
+        .highlight-blue {
+            background: linear-gradient(120deg, #dbeafe 0%, #bfdbfe 100%);
+            color: #1e40af;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-weight: 800;
+            box-shadow: 0 2px 4px rgba(59, 130, 246, 0.2);
+        }
+
+        /* Hero Animated Background */
+        .hero-bg-animated {
+            background: linear-gradient(-45deg, #0f172a, #1e3a8a, #1e40af, #3b82f6);
+            background-size: 400% 400%;
+            animation: gradientBG 15s ease infinite;
+            position: relative;
+        }
+
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* Floating Shapes for Motion */
+        .shape {
+            position: absolute;
+            filter: blur(60px);
+            opacity: 0.5;
+            animation: float 10s infinite ease-in-out;
+            z-index: 0;
+        }
+        .shape-1 {
+            top: 10%; left: 10%; width: 300px; height: 300px;
+            background: #60a5fa;
+            animation-delay: 0s;
+        }
+        .shape-2 {
+            bottom: 20%; right: 10%; width: 250px; height: 250px;
+            background: #8b5cf6;
+            animation-delay: -5s;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-40px) rotate(10deg); }
+            100% { transform: translateY(0px) rotate(0deg); }
+        }
+
+        /* Scroll Animation Classes */
+        .reveal {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 1s cubic-bezier(0.5, 0, 0, 1);
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Button Styles */
+        .btn-gradient {
+            background: linear-gradient(135deg, #2563eb 0%, #1e40af 100%);
+            box-shadow: 0 4px 15px rgba(37, 99, 235, 0.4);
+            transition: all 0.3s ease;
             position: relative;
             overflow: hidden;
         }
-        .hero-pattern {
-            position: absolute;
-            top: 0; left: 0; right: 0; bottom: 0;
-            background-image: radial-gradient(#ffffff 1px, transparent 1px);
-            background-size: 30px 30px;
-            opacity: 0.05;
+        .btn-gradient:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(37, 99, 235, 0.6);
         }
-        .text-gradient {
-            background: linear-gradient(to right, #60a5fa, #34d399);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+
+        .btn-outline {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(255, 255, 255, 0.6);
+            transition: all 0.3s ease;
         }
-        .section-title {
-            position: relative;
-            display: inline-block;
-            margin-bottom: 2rem;
+        .btn-outline:hover {
+            background: rgba(255, 255, 255, 0.25);
+            border-color: #fff;
+            transform: translateY(-3px);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
         }
-        .section-title::after {
-            content: '';
-            display: block;
-            width: 60%;
-            height: 4px;
-            background: #2563eb;
-            margin-top: 0.5rem;
-            border-radius: 2px;
-        }
+
+        /* Card Hover */
         .card-hover {
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
         .card-hover:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.15);
         }
-        /* FAQ Accordion Styles */
-        .faq-item {
-            border-bottom: 1px solid #e2e8f0;
+
+        /* Video Container Styles */
+        .video-wrapper {
+            position: relative;
+            background: #000;
+            border-radius: 1.5rem;
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+            cursor: pointer;
         }
-        .faq-item:last-child {
-            border-bottom: none;
+        
+        /* Standard Aspect Ratio (16:9) */
+        .standard-aspect {
+            padding-bottom: 56.25%;
         }
-        /* Flowchart Animation */
-        .flow-line {
-            stroke-dasharray: 10;
-            animation: dash 60s linear infinite;
+
+        .video-wrapper img {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            object-fit: cover;
+            opacity: 0.8;
+            transition: opacity 0.3s, transform 0.5s;
+        }
+        .video-wrapper:hover img {
+            opacity: 0.6;
+            transform: scale(1.05);
+        }
+        .play-button {
+            position: absolute;
+            top: 50%; left: 50%;
+            transform: translate(-50%, -50%);
+            width: 80px; height: 80px;
+            background: rgba(220, 38, 38, 0.9);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 0 30px rgba(220, 38, 38, 0.5);
+            transition: all 0.3s;
+            z-index: 10;
+        }
+        .video-wrapper:hover .play-button {
+            background: #ff0000;
+            transform: translate(-50%, -50%) scale(1.1);
+        }
+        .video-wrapper iframe {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            z-index: 20;
+        }
+
+         /* Flowchart Animation */
+         .flow-line {
+            stroke-dasharray: 12;
+            animation: dash 40s linear infinite;
         }
         @keyframes dash {
             to { stroke-dashoffset: -1000; }
         }
-        .btn-primary {
-            background: linear-gradient(90deg, #2563eb 0%, #1d4ed8 100%);
-            transition: all 0.3s ease;
-        }
-        .btn-primary:hover {
-            box-shadow: 0 0 20px rgba(37, 99, 235, 0.5);
-            transform: translateY(-2px);
-        }
     </style>
 </head>
-<body class="bg-gray-50 text-gray-800 antialiased" x-data="{ openFaq: null }">
+<body class="text-gray-800 antialiased font-medium" x-data="{ openFaq: null }">
 
     <!-- Navigation -->
-    <nav class="bg-white/95 backdrop-blur-md fixed w-full z-50 border-b border-gray-200 shadow-sm">
+    <nav class="bg-white/95 backdrop-blur-md fixed w-full z-50 border-b border-gray-200 shadow-sm transition-all duration-300">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between h-16 items-center">
-                <div class="flex-shrink-0 flex items-center gap-2">
-                    <i class="fas fa-university text-blue-800 text-2xl"></i>
-                    <span class="font-bold text-xl md:text-2xl text-gray-900 tracking-tight">Caroline Univ. <span class="text-blue-600 font-light">AI Business</span></span>
+            <div class="flex justify-between h-24 items-center">
+                <div class="flex-shrink-0 flex items-center gap-4">
+                    <div class="bg-gradient-to-br from-blue-900 to-blue-700 text-white p-3 rounded-xl shadow-lg">
+                        <i class="fas fa-university text-2xl"></i>
+                    </div>
+                    <div class="flex flex-col">
+                        <span class="font-black text-2xl md:text-3xl text-gray-900 tracking-tight leading-none">Caroline Univ.</span>
+                        <span class="text-sm md:text-base font-bold text-blue-600 tracking-wide mt-1">AI Business Convergence</span>
+                    </div>
                 </div>
-                <div class="hidden lg:flex space-x-8 text-sm font-semibold text-gray-600">
-                    <a href="#about" class="hover:text-blue-600 transition">교수 소개</a>
-                    <a href="#university" class="hover:text-blue-600 transition">학교 소개</a>
-                    <a href="#curriculum" class="hover:text-blue-600 transition">커리큘럼 & PBL</a>
-                    <a href="#tuition" class="hover:text-blue-600 transition">학비 & 장학</a>
-                    <a href="#admission" class="hover:text-blue-600 transition">입학 안내</a>
+                <div class="hidden xl:flex space-x-8 text-lg font-bold text-gray-600">
+                    <a href="#about" class="hover:text-blue-700 hover:bg-blue-50 px-4 py-2 rounded-xl transition duration-200">교수 소개</a>
+                    <a href="#university" class="hover:text-blue-700 hover:bg-blue-50 px-4 py-2 rounded-xl transition duration-200">학교 소개</a>
+                    <a href="#curriculum" class="hover:text-blue-700 hover:bg-blue-50 px-4 py-2 rounded-xl transition duration-200">커리큘럼</a>
+                    <a href="#tuition" class="hover:text-blue-700 hover:bg-blue-50 px-4 py-2 rounded-xl transition duration-200">학비 & 장학</a>
                 </div>
-                <a href="#contact" class="hidden md:inline-block px-5 py-2 rounded-full bg-blue-600 text-white font-bold hover:bg-blue-700 transition shadow-lg text-sm">
-                    입학 문의
+                <a href="#admission" class="hidden md:inline-flex items-center px-8 py-4 rounded-2xl bg-gradient-to-r from-blue-900 to-indigo-800 text-white font-bold hover:from-blue-800 hover:to-indigo-700 transition shadow-xl hover:shadow-2xl text-lg transform hover:scale-105 duration-200">
+                    입학 문의 <i class="fas fa-arrow-right ml-3 animate-pulse"></i>
                 </a>
             </div>
         </div>
     </nav>
 
-    <!-- Hero Section -->
-    <section class="hero-bg min-h-screen flex items-center justify-center pt-24 pb-16 px-4 sm:px-6 lg:px-8">
-        <div class="hero-pattern"></div>
-        <div class="max-w-7xl mx-auto text-center relative z-10">
-            <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-blue-900/60 border border-blue-400/30 text-blue-300 text-sm font-semibold mb-8 animate-fade-in-up">
-                <span class="w-2 h-2 rounded-full bg-green-400 animate-pulse"></span>
-                AGI 시대를 준비하는 글로벌 리더의 선택
+    <!-- Hero Section (Animated Gradient Background) -->
+    <section class="hero-bg-animated min-h-screen flex items-center justify-center pt-24 pb-16 px-4 sm:px-6 lg:px-8 overflow-hidden">
+        
+        <!-- Moving Shapes -->
+        <div class="shape shape-1 rounded-full"></div>
+        <div class="shape shape-2 rounded-full"></div>
+
+        <!-- Hero Content -->
+        <div class="max-w-7xl mx-auto text-center relative z-10 px-4 reveal active">
+            <div class="inline-flex items-center gap-3 px-6 py-2 rounded-full bg-white/10 backdrop-blur-md border border-white/30 text-blue-100 text-lg font-bold mb-10 shadow-2xl animate-bounce">
+                <span class="relative flex h-3 w-3">
+                  <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
+                  <span class="relative inline-flex rounded-full h-3 w-3 bg-green-500"></span>
+                </span>
+                AGI 시대를 선점하는 글로벌 리더의 탁월한 선택
             </div>
             
-            <h1 class="text-4xl sm:text-6xl lg:text-7xl font-black text-white mb-6 leading-tight tracking-tight">
-                AI 융합 비즈니스 &<br>
-                <span class="text-gradient">미래 가치의 완성</span>
+            <h1 class="text-5xl sm:text-7xl lg:text-8xl font-black text-white mb-10 leading-tight tracking-tight drop-shadow-2xl">
+                AI 융합 비즈니스<br>
+                <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-200 via-emerald-200 to-yellow-200">미래 가치의 완성</span>
             </h1>
             
-            <p class="mt-6 max-w-3xl mx-auto text-lg sm:text-xl text-gray-300 font-light leading-relaxed">
-                "미래는 예측하는 것이 아니라 만들어가는 것입니다."<br>
-                <strong class="text-white">정진혁 교수</strong>의 1.5만 시간 AI 실전 노하우와 독보적인 <strong>AI-PBL</strong> 교육법으로<br>
-                당신을 대체 불가능한 <strong>AI 악셀러레이터</strong>이자 <strong>철학자</strong>로 성장시킵니다.
+            <p class="mt-8 max-w-5xl mx-auto text-xl sm:text-2xl text-gray-100 font-medium leading-relaxed drop-shadow-lg text-shadow-sm">
+                <span class="highlight bg-blue-600 text-white px-3 shadow-lg transform hover:scale-105 inline-block transition cursor-default">정진혁 교수</span>의 <span class="highlight bg-yellow-400 text-black px-3 shadow-lg transform hover:scale-105 inline-block transition cursor-default">1.5만 시간</span> 압도적 실전 노하우와<br class="hidden lg:block">
+                독보적인 <span class="text-yellow-300 font-black underline decoration-4 underline-offset-8 decoration-blue-500/50">AI-PBL(프로젝트 기반 학습)</span> 교육법으로<br>
+                당신을 누구도 대체할 수 없는 <strong>'AI 악셀러레이터'</strong>이자 <strong>'AI 철학자'</strong>로 성장시킵니다.
             </p>
 
-            <div class="mt-12 flex flex-col sm:flex-row justify-center gap-4">
-                <a href="#admission" class="btn-primary px-8 py-4 rounded-xl text-white font-bold text-lg flex items-center justify-center gap-2">
-                    <i class="fas fa-file-signature"></i> 신입생 모집 요강 확인
+            <div class="mt-16 flex flex-col sm:flex-row justify-center gap-8">
+                <a href="#admission" class="btn-gradient px-12 py-6 rounded-2xl text-white font-bold text-xl flex items-center justify-center gap-4 group">
+                    <i class="fas fa-file-signature text-2xl group-hover:rotate-12 transition"></i> 신입생 모집 요강 확인
                 </a>
-                <a href="http://aipbl.co.kr" target="_blank" class="px-8 py-4 rounded-xl bg-white/10 backdrop-blur-sm border border-white/20 text-white font-semibold hover:bg-white/20 transition flex items-center justify-center gap-2">
-                    <i class="fas fa-globe"></i> AI 멀티학습페이지 방문
+                <a href="http://aipbl.co.kr" target="_blank" class="btn-outline px-12 py-6 rounded-2xl text-white font-bold text-xl flex items-center justify-center gap-4 group">
+                    <i class="fas fa-globe text-2xl group-hover:spin-slow"></i> AI 멀티학습페이지 방문
                 </a>
             </div>
         </div>
     </section>
 
-    <!-- Professor Profile Section (Expanded) -->
-    <section id="about" class="py-24 bg-white">
+    <!-- Professor Profile Section -->
+    <section id="about" class="py-32 bg-gradient-to-b from-white via-blue-50 to-white">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex flex-col lg:flex-row gap-16 items-start">
-                <!-- Image Column -->
-                <div class="w-full lg:w-5/12 sticky top-24">
-                    <div class="relative group rounded-3xl overflow-hidden shadow-2xl border border-gray-100">
-                        <img src="https://github.com/aicufarmaster/aicaroline/raw/main/aiprofessor.JPG" 
-                             alt="정진혁 교수 프로필" 
-                             class="w-full h-auto object-cover transform transition duration-500 group-hover:scale-105"
-                             onerror="this.src='https://placehold.co/600x800/1e3a8a/ffffff?text=Prof.+Jeong+Jin-hyuk'">
-                        <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-8">
-                            <h3 class="text-white text-2xl font-bold">정진혁 교수</h3>
-                            <p class="text-blue-300 font-medium">AI 비즈니스융합학과 교수</p>
+            <div class="flex flex-col lg:flex-row gap-20 items-center">
+                
+                <!-- Profile Image Column (Changed from Video to Image) -->
+                <div class="w-full lg:w-4/12 reveal">
+                    <div class="relative group mb-6">
+                        <!-- Decorative blurred background -->
+                        <div class="absolute -inset-6 bg-gradient-to-tr from-blue-600 to-emerald-400 rounded-[3rem] blur-xl opacity-40 group-hover:opacity-60 transition duration-1000"></div>
+                        
+                        <!-- Profile Image Container -->
+                        <div class="relative rounded-[2rem] overflow-hidden shadow-2xl border-8 border-white bg-black z-10">
+                            <img src="https://github.com/aicufarmaster/aicaroline/raw/main/aiprofessor.JPG" 
+                                 alt="정진혁 교수 프로필" 
+                                 class="w-full h-auto object-cover transform transition duration-500 group-hover:scale-105"
+                                 onerror="this.src='https://placehold.co/600x800/1e3a8a/ffffff?text=Prof.+Jeong'">
+                            <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-6 text-center">
+                                <h3 class="text-white text-2xl font-bold">정진혁 교수</h3>
+                                <p class="text-blue-300 font-medium">AI 비즈니스융합학과</p>
+                            </div>
                         </div>
                     </div>
+
+                    <!-- YouTube Link Button (Renamed) -->
+                    <div class="text-center mb-10">
+                        <a href="https://youtube.com/shorts/6xMgpKbobfk?si=ILQlImojCKt8JJlV" target="_blank" class="inline-flex items-center px-6 py-3 bg-red-600 text-white font-bold rounded-xl hover:bg-red-700 transition shadow-lg hover:shadow-xl transform hover:-translate-y-1">
+                            <i class="fab fa-youtube mr-2 text-xl"></i> 유튜브 인사말 보기
+                        </a>
+                    </div>
                     
-                    <div class="mt-8 bg-gray-50 p-6 rounded-2xl border border-gray-100">
-                        <h4 class="font-bold text-gray-900 mb-4 flex items-center gap-2">
-                            <i class="fas fa-link text-blue-600"></i> 관련 링크
-                        </h4>
-                        <div class="space-y-3">
-                            <a href="https://search.naver.com/search.naver?where=nexearch&sm=tab_etc&mra=bjky&x_csa=%7B%22fromUi%22%3A%22kb%22%7D&pkid=1&os=208508&qvt=0&query=%EC%A0%95%EC%A7%84%ED%98%81%20%ED%94%84%EB%A1%9C%ED%95%84" target="_blank" class="block w-full py-3 px-4 bg-white border border-gray-200 rounded-xl text-sm font-semibold text-gray-700 hover:border-green-500 hover:text-green-600 transition shadow-sm text-center">
-                                <i class="fas fa-search mr-2"></i> 네이버 프로필
-                            </a>
-                            <a href="http://aipbl.co.kr" target="_blank" class="block w-full py-3 px-4 bg-white border border-gray-200 rounded-xl text-sm font-semibold text-gray-700 hover:border-blue-500 hover:text-blue-600 transition shadow-sm text-center">
-                                <i class="fas fa-laptop-code mr-2"></i> AIPBL.co.kr (학습포털)
-                            </a>
-                            <a href="https://www.aladin.co.kr/search/wsearchresult.aspx?SearchTarget=EBook&KeyWord=%ED%80%80%ED%85%80%EC%98%A5%ED%86%A0" target="_blank" class="block w-full py-3 px-4 bg-white border border-gray-200 rounded-xl text-sm font-semibold text-gray-700 hover:border-indigo-500 hover:text-indigo-600 transition shadow-sm text-center">
-                                <i class="fas fa-book mr-2"></i> 저서 목록 (퀀텀옥토)
-                            </a>
-                        </div>
+                    <!-- Quick Links Box -->
+                    <div class="space-y-4">
+                        <a href="https://search.naver.com/search.naver?where=nexearch&sm=tab_etc&mra=bjky&x_csa=%7B%22fromUi%22%3A%22kb%22%7D&pkid=1&os=208508&qvt=0&query=%EC%A0%95%EC%A7%84%ED%98%81%20%ED%94%84%EB%A1%9C%ED%95%84" target="_blank" class="flex items-center justify-between p-5 bg-white rounded-2xl shadow-lg hover:shadow-xl transition border border-gray-100 group cursor-pointer transform hover:-translate-y-1">
+                            <span class="font-bold text-gray-700 text-lg group-hover:text-green-600"><i class="fas fa-search text-green-500 mr-4 text-xl"></i>네이버 프로필 확인</span>
+                            <i class="fas fa-external-link-alt text-gray-300 group-hover:text-green-600 text-xl"></i>
+                        </a>
+                        <a href="http://aipbl.co.kr" target="_blank" class="flex items-center justify-between p-5 bg-white rounded-2xl shadow-lg hover:shadow-xl transition border border-gray-100 group cursor-pointer transform hover:-translate-y-1">
+                            <span class="font-bold text-gray-700 text-lg group-hover:text-blue-600"><i class="fas fa-laptop-code text-blue-500 mr-4 text-xl"></i>AIPBL 학습포털 바로가기</span>
+                            <i class="fas fa-external-link-alt text-gray-300 group-hover:text-blue-600 text-xl"></i>
+                        </a>
+                         <a href="https://www.aladin.co.kr/search/wsearchresult.aspx?SearchTarget=EBook&KeyWord=%ED%80%80%ED%85%80%EC%98%A5%ED%86%A0" target="_blank" class="flex items-center justify-between p-5 bg-white rounded-2xl shadow-lg hover:shadow-xl transition border border-gray-100 group cursor-pointer transform hover:-translate-y-1">
+                            <span class="font-bold text-gray-700 text-lg group-hover:text-indigo-600"><i class="fas fa-book text-indigo-500 mr-4 text-xl"></i>퀀텀옥토 저서 목록 (40여권)</span>
+                            <i class="fas fa-external-link-alt text-gray-300 group-hover:text-indigo-600 text-xl"></i>
+                        </a>
                     </div>
                 </div>
 
                 <!-- Content Column -->
-                <div class="w-full lg:w-7/12">
-                    <div class="mb-10">
-                        <h2 class="section-title text-4xl font-bold text-gray-900">
+                <div class="w-full lg:w-8/12 reveal">
+                    <div class="mb-12 pl-8 border-l-8 border-blue-600">
+                        <h2 class="text-4xl md:text-6xl font-black text-gray-900 leading-tight mb-6">
                             AI 악셀러레이터이자<br>AI 철학자, <span class="text-blue-700">정진혁</span>
                         </h2>
-                        <p class="text-xl text-gray-600 font-light italic leading-relaxed">
-                            "AI는 단순한 도구가 아닙니다. 인간의 한계를 확장하고 새로운 르네상스를 여는 파트너입니다."
+                        <p class="text-2xl md:text-3xl text-gray-600 font-bold italic leading-relaxed">
+                            "AI는 단순한 도구가 아닙니다.<br>인간의 한계를 확장하고<br>새로운 르네상스를 여는 <span class="bg-yellow-200 px-2">진정한 파트너</span>입니다."
                         </p>
                     </div>
 
-                    <div class="prose prose-lg text-gray-600 mb-10">
-                        <p>
-                            정진혁 교수는 1.5만 시간 이상의 방대한 AI 실전 활용 경험을 바탕으로, 
-                            생성형 AI 활용의 마스터이자 복잡한 기술과 인문학적 통찰을 융합하는 데 탁월한 능력을 보여주는 교육자입니다.
+                    <div class="prose prose-xl text-gray-700 mb-12 leading-loose">
+                        <p class="mb-8">
+                            정진혁 교수는 단순히 AI 기술을 가르치는 사람이 아닙니다. 그는 <span class="highlight">1.5만 시간 이상의 방대한 AI 실전 활용 및 연구 경험</span>을 보유한 '실천하는 지식인'입니다. 이론에 머무르지 않고, 직접 40여 권의 책을 집필하며 AI와 함께 호흡해 온 생생한 경험을 여러분에게 전수합니다.
                         </p>
-                        <p>
-                            현재 미국 캐롤라인대학교 AI 비즈니스융합학과 교수이자 숙명여대 빅데이터융합분석학과 교수로 재직 중이며, 
-                            단순한 이론 강의를 넘어 AI-PBL(프로젝트 기반 학습) 방법론을 통해 학습자가 주도적으로 문제를 해결하고 결과물을 창출하도록 이끕니다.
+                        <p class="mb-8">
+                            현재 <strong>미국 캐롤라인대학교 AI 비즈니스융합학과 교수</strong>이자 <strong>숙명여자대학교 빅데이터융합분석학과 교수</strong>로 재직 중인 그는, 기존 주입식 교육의 한계를 뛰어넘어 학습자가 주도적으로 문제를 해결하는 <span class="highlight-blue">AI-PBL (Project-Based Learning)</span> 방법론을 창안했습니다.
                         </p>
-                        <p>
-                            저서로는 『AI 시대의 비즈니스 전략』, 『AI 메타인지』 등 40여 권의 AI 활용 및 전략 서적을 출간하였으며, 
-                            AI 리터러시부터 비즈니스 모델링, 학술 연구, 문제 해결에 이르기까지 전방위적인 AI 교육 커리큘럼을 제공합니다.
+                        <p class="mb-8">
+                            필명 <span class="font-bold text-indigo-600">'퀀텀옥토(Quantum Octo)'</span>로 활동하며 『AI 시대의 비즈니스 전략』, 『AI 메타인지』 등 수많은 베스트셀러를 통해 기술과 인문학, 비즈니스와 철학을 융합하는 통찰을 제시하고 있습니다. 정진혁 교수와 함께라면, 여러분은 AI를 두려워하는 존재가 아니라, <strong>AI를 지휘하는 마에스트로</strong>가 될 것입니다.
                         </p>
                     </div>
 
-                    <!-- Highlights Grid -->
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                        <div class="bg-blue-50 p-6 rounded-2xl border-l-4 border-blue-600">
-                            <h4 class="font-bold text-blue-900 text-lg mb-2">Academic Roles</h4>
-                            <ul class="space-y-2 text-sm text-gray-700">
-                                <li>• 미국 캐롤라인대학교 AI 비즈니스융합학과 교수</li>
-                                <li>• 숙명여자대학교 빅데이터융합분석학과 교수</li>
-                                <li>• 퀀텀인류학 유니버스 대표</li>
+                    <!-- Detailed Highlights Grid -->
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                        <div class="bg-white p-8 rounded-3xl shadow-xl border-t-8 border-blue-600 hover:scale-105 transition duration-300 group">
+                            <h4 class="font-black text-blue-900 text-2xl mb-6 flex items-center group-hover:text-blue-700"><i class="fas fa-university mr-3 text-3xl"></i>Academic Leadership</h4>
+                            <ul class="space-y-4 text-lg font-semibold text-gray-700">
+                                <li class="flex items-start"><span class="text-blue-500 mr-2">✓</span> 미국 캐롤라인대학교 교수</li>
+                                <li class="flex items-start"><span class="text-blue-500 mr-2">✓</span> 숙명여자대학교 교수</li>
+                                <li class="flex items-start"><span class="text-blue-500 mr-2">✓</span> 퀀텀인류학 유니버스 대표</li>
+                                <li class="flex items-start"><span class="text-blue-500 mr-2">✓</span> AI 융합 교육과정 총괄 설계</li>
                             </ul>
                         </div>
-                        <div class="bg-emerald-50 p-6 rounded-2xl border-l-4 border-emerald-600">
-                            <h4 class="font-bold text-emerald-900 text-lg mb-2">Expertise & Works</h4>
-                            <ul class="space-y-2 text-sm text-gray-700">
-                                <li>• 1.5만 시간 이상의 AI 실전 활용</li>
-                                <li>• AI 활용 서적 40여 권 출간 (필명: 퀀텀옥토)</li>
-                                <li>• AI-PBL 및 메타인지 학습법 창안</li>
+                        <div class="bg-white p-8 rounded-3xl shadow-xl border-t-8 border-emerald-500 hover:scale-105 transition duration-300 group">
+                            <h4 class="font-black text-emerald-900 text-2xl mb-6 flex items-center group-hover:text-emerald-700"><i class="fas fa-brain mr-3 text-3xl"></i>Expertise & Impact</h4>
+                            <ul class="space-y-4 text-lg font-semibold text-gray-700">
+                                <li class="flex items-start"><span class="text-emerald-500 mr-2">✓</span> <span class="bg-emerald-100 text-emerald-900 px-2 rounded">1.5만 시간</span> AI 실전 활용</li>
+                                <li class="flex items-start"><span class="text-emerald-500 mr-2">✓</span> AI 저서 40여 권 집필</li>
+                                <li class="flex items-start"><span class="text-emerald-500 mr-2">✓</span> AI-PBL / 메타인지 학습법 창안</li>
+                                <li class="flex items-start"><span class="text-emerald-500 mr-2">✓</span> AGI 시대 대비 인재 양성</li>
                             </ul>
                         </div>
                     </div>
@@ -217,94 +347,126 @@
     </section>
 
     <!-- University Introduction & FAQ -->
-    <section id="university" class="py-24 bg-gray-50">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-16">
-                <span class="text-blue-600 font-bold tracking-wider uppercase text-sm">About Caroline University</span>
-                <h2 class="text-3xl sm:text-4xl font-bold text-gray-900 mt-2">미국 캐롤라인대학교 소개</h2>
-                <p class="text-gray-600 mt-4 max-w-2xl mx-auto">
-                    미국 연방정부 교육부 인증(Accreditation)을 받은 정규 대학으로,<br>
-                    전 세계 어디서나 학위를 인정받는 글로벌 리더의 요람입니다.
+    <section id="university" class="py-32 bg-slate-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 reveal">
+            <div class="text-center mb-20">
+                <span class="bg-blue-100 text-blue-700 px-6 py-2 rounded-full text-base font-bold tracking-wider uppercase shadow-sm">About Caroline University</span>
+                <h2 class="text-4xl md:text-6xl font-black text-gray-900 mt-6 mb-8">미국 캐롤라인대학교의 특별함</h2>
+                <p class="text-2xl text-gray-600 max-w-4xl mx-auto leading-relaxed">
+                    미국 연방정부 교육부 인증(Accreditation)을 받은 정규 대학으로서,<br>
+                    <span class="font-bold text-gray-900 underline decoration-yellow-400 decoration-4 underline-offset-4">전 세계 어디서나 학위를 인정받는</span> 글로벌 리더의 요람입니다.
                 </p>
             </div>
 
-            <!-- University Stats -->
-            <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-16">
-                <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 text-center">
-                    <div class="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center text-blue-600 mx-auto mb-4 text-xl"><i class="fas fa-flag-usa"></i></div>
-                    <h3 class="font-bold text-gray-900">미국 연방정부 인증</h3>
-                    <p class="text-xs text-gray-500 mt-1">US Dept. of Education TRACS 인증</p>
+            <!-- University Stats Cards -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-24">
+                <div class="bg-white p-10 rounded-[2.5rem] shadow-xl border border-gray-100 text-center card-hover group cursor-pointer">
+                    <div class="w-20 h-20 bg-blue-50 rounded-3xl flex items-center justify-center text-blue-600 mx-auto mb-8 text-3xl group-hover:bg-blue-600 group-hover:text-white transition duration-300 shadow-md"><i class="fas fa-flag-usa"></i></div>
+                    <h3 class="font-black text-2xl text-gray-900 mb-4">미국 연방정부 인증</h3>
+                    <p class="text-base text-gray-500 font-medium leading-relaxed">US Dept. of Education<br>TRACS 정식 인증 대학<br>(CHEA 인정 기관)</p>
                 </div>
-                <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 text-center">
-                    <div class="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center text-blue-600 mx-auto mb-4 text-xl"><i class="fas fa-globe"></i></div>
-                    <h3 class="font-bold text-gray-900">글로벌 학위</h3>
-                    <p class="text-xs text-gray-500 mt-1">전 세계 어디서나 통용되는 정규 학위</p>
+                <div class="bg-white p-10 rounded-[2.5rem] shadow-xl border border-gray-100 text-center card-hover group cursor-pointer">
+                    <div class="w-20 h-20 bg-blue-50 rounded-3xl flex items-center justify-center text-blue-600 mx-auto mb-8 text-3xl group-hover:bg-blue-600 group-hover:text-white transition duration-300 shadow-md"><i class="fas fa-globe"></i></div>
+                    <h3 class="font-black text-2xl text-gray-900 mb-4">글로벌 학위 인정</h3>
+                    <p class="text-base text-gray-500 font-medium leading-relaxed">한국연구재단 박사신고 가능<br>전 세계 통용되는<br>정규 석/박사 학위</p>
                 </div>
-                <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 text-center">
-                    <div class="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center text-blue-600 mx-auto mb-4 text-xl"><i class="fas fa-language"></i></div>
-                    <h3 class="font-bold text-gray-900">100% 한국어 강의</h3>
-                    <p class="text-xs text-gray-500 mt-1">언어 장벽 없는 온라인 석/박사 과정</p>
+                <div class="bg-white p-10 rounded-[2.5rem] shadow-xl border border-gray-100 text-center card-hover group cursor-pointer">
+                    <div class="w-20 h-20 bg-blue-50 rounded-3xl flex items-center justify-center text-blue-600 mx-auto mb-8 text-3xl group-hover:bg-blue-600 group-hover:text-white transition duration-300 shadow-md"><i class="fas fa-comments"></i></div>
+                    <h3 class="font-black text-2xl text-gray-900 mb-4">100% 한국어 강의</h3>
+                    <p class="text-base text-gray-500 font-medium leading-relaxed">언어 장벽 없는 학습 환경<br>논문 한국어 작성 가능<br>(박사 최종논문은 영문)</p>
                 </div>
-                <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 text-center">
-                    <div class="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center text-blue-600 mx-auto mb-4 text-xl"><i class="fas fa-wallet"></i></div>
-                    <h3 class="font-bold text-gray-900">경제적인 학비</h3>
-                    <p class="text-xs text-gray-500 mt-1">미국 사립대 대비 합리적인 비용</p>
+                <div class="bg-white p-10 rounded-[2.5rem] shadow-xl border border-gray-100 text-center card-hover group cursor-pointer">
+                    <div class="w-20 h-20 bg-blue-50 rounded-3xl flex items-center justify-center text-blue-600 mx-auto mb-8 text-3xl group-hover:bg-blue-600 group-hover:text-white transition duration-300 shadow-md"><i class="fas fa-hand-holding-usd"></i></div>
+                    <h3 class="font-black text-2xl text-gray-900 mb-4">합리적인 학비</h3>
+                    <p class="text-base text-gray-500 font-medium leading-relaxed">미국 사립대 대비 파격적<br>국내 대학원 수준의<br>경제적인 비용 구조</p>
                 </div>
             </div>
 
             <!-- FAQ Accordion -->
-            <div class="bg-white rounded-3xl shadow-xl overflow-hidden border border-gray-100 max-w-4xl mx-auto">
-                <div class="p-8 bg-blue-900 text-white">
-                    <h3 class="text-2xl font-bold flex items-center gap-3">
-                        <i class="fas fa-question-circle text-blue-300"></i> 자주 묻는 질문 (FAQ)
-                    </h3>
+            <div class="bg-white rounded-[3rem] shadow-2xl overflow-hidden border border-gray-100 max-w-6xl mx-auto">
+                <div class="p-12 bg-slate-900 text-white flex flex-col md:flex-row items-center justify-between gap-6">
+                    <div>
+                        <h3 class="text-4xl font-black flex items-center gap-5">
+                            <i class="fas fa-question-circle text-blue-400 text-5xl"></i> 입학 전 FAQ
+                        </h3>
+                        <p class="text-slate-400 mt-3 text-lg font-medium">가장 많이 묻는 질문들을 상세하게 정리해 드립니다.</p>
+                    </div>
                 </div>
                 
                 <div class="divide-y divide-gray-100">
                     <!-- FAQ 1 -->
-                    <div class="faq-item" x-data="{ open: false }">
-                        <button @click="open = !open" class="flex justify-between items-center w-full p-6 text-left hover:bg-gray-50 transition">
-                            <span class="font-bold text-gray-800 text-lg">Q. 캐롤라인(Caroline)이라는 이름의 의미는 무엇인가요?</span>
-                            <i class="fas fa-chevron-down text-gray-400 transition-transform" :class="{ 'rotate-180': open }"></i>
+                    <div class="faq-item" x-data="{ open: true }">
+                        <button @click="open = !open" class="flex justify-between items-center w-full p-10 text-left hover:bg-gray-50 transition group">
+                            <span class="font-black text-gray-800 text-2xl group-hover:text-blue-600 transition flex items-center">
+                                <span class="bg-blue-100 text-blue-600 px-3 py-1 rounded-lg mr-4 text-lg">Q1</span>
+                                캐롤라인(Caroline)이라는 이름의 특별한 의미는 무엇인가요?
+                            </span>
+                            <span class="w-10 h-10 flex items-center justify-center rounded-full bg-gray-100 group-hover:bg-blue-100 text-gray-400 group-hover:text-blue-600 transition">
+                                <i class="fas fa-chevron-down transition-transform duration-300 text-xl" :class="{ 'rotate-180': open }"></i>
+                            </span>
                         </button>
-                        <div x-show="open" x-collapse class="px-6 pb-6 text-gray-600 bg-gray-50/50 leading-relaxed">
-                            캐롤라인(Caroline)은 하와이 남동쪽에 위치한 Caroline Island에서 유래했습니다. 이곳은 지구상에서 하루가 가장 먼저 시작되고 아침 해가 가장 먼저 뜨는 곳으로, 'Millennium Island'라고도 불립니다. 이는 세계를 리드하고 선도할 <strong>Global Leader를 양성하겠다는 대학의 비전</strong>을 상징합니다.
+                        <div x-show="open" x-collapse class="px-10 pb-10 text-xl text-gray-600 bg-gray-50/50 leading-loose">
+                            캐롤라인(Caroline)은 하와이 남동쪽에 위치한 <strong>Caroline Island</strong>에서 유래했습니다. 이곳은 지구상에서 날짜 변경선에 가장 인접하여 하루가 가장 먼저 시작되고, 아침 해가 가장 먼저 뜨는 곳으로 'Millennium Island'라고도 불립니다. <br><br>
+                            이는 단순히 지리적인 의미를 넘어, <strong>21세기를 가장 먼저 열고 시대를 이끌어 갈 <span class="highlight">Global Leader를 양성하겠다는 대학의 비전과 의지</span></strong>를 상징합니다.
                         </div>
                     </div>
+
                     <!-- FAQ 2 -->
                     <div class="faq-item" x-data="{ open: false }">
-                        <button @click="open = !open" class="flex justify-between items-center w-full p-6 text-left hover:bg-gray-50 transition">
-                            <span class="font-bold text-gray-800 text-lg">Q. 학위 인증(Accreditation)은 확실한가요?</span>
-                            <i class="fas fa-chevron-down text-gray-400 transition-transform" :class="{ 'rotate-180': open }"></i>
+                        <button @click="open = !open" class="flex justify-between items-center w-full p-10 text-left hover:bg-gray-50 transition group">
+                            <span class="font-black text-gray-800 text-2xl group-hover:text-blue-600 transition flex items-center">
+                                <span class="bg-blue-100 text-blue-600 px-3 py-1 rounded-lg mr-4 text-lg">Q2</span>
+                                학위 인증(Accreditation)은 확실한가요? 비인가 대학과는 어떻게 다른가요?
+                            </span>
+                            <span class="w-10 h-10 flex items-center justify-center rounded-full bg-gray-100 group-hover:bg-blue-100 text-gray-400 group-hover:text-blue-600 transition">
+                                <i class="fas fa-chevron-down transition-transform duration-300 text-xl" :class="{ 'rotate-180': open }"></i>
+                            </span>
                         </button>
-                        <div x-show="open" x-collapse class="px-6 pb-6 text-gray-600 bg-gray-50/50 leading-relaxed">
-                            네, 그렇습니다. 캐롤라인대학교는 <strong>미국 연방정부 교육부(USDOE)와 고등교육인증위원회(CHEA)</strong>가 인정하는 TRACS(Transnational Association of Christian Colleges and Schools)의 정식 인증을 받은 대학입니다. 따라서 취득한 학위는 한국연구재단에 박사학위 신고가 가능하며, 전 세계적으로 인정받습니다. 학교 도메인이 <strong>.edu</strong>로 끝나는 것이 그 증거입니다.
+                        <div x-show="open" x-collapse class="px-10 pb-10 text-xl text-gray-600 bg-gray-50/50 leading-loose">
+                            네, 100% 확실합니다. 캐롤라인대학교는 <strong>미국 연방정부 교육부(USDOE)와 고등교육인증위원회(CHEA)</strong>가 인정하는 <span class="highlight-blue">TRACS(Transnational Association of Christian Colleges and Schools)</span>의 정식 인증을 받은 정규 대학입니다.<br><br>
+                            비인가 대학과 달리, 본교의 학위는 한국연구재단에 박사학위 신고가 가능하며, 전 세계적으로 인정받습니다. 가장 확실한 증거는 학교 공식 도메인이 <strong>.edu</strong>로 끝난다는 점입니다. (비인가 대학은 .edu를 사용할 수 없습니다.)
                         </div>
                     </div>
+
                     <!-- FAQ 3 -->
                     <div class="faq-item" x-data="{ open: false }">
-                        <button @click="open = !open" class="flex justify-between items-center w-full p-6 text-left hover:bg-gray-50 transition">
-                            <span class="font-bold text-gray-800 text-lg">Q. 온라인 강의는 어떻게 진행되나요?</span>
-                            <i class="fas fa-chevron-down text-gray-400 transition-transform" :class="{ 'rotate-180': open }"></i>
+                        <button @click="open = !open" class="flex justify-between items-center w-full p-10 text-left hover:bg-gray-50 transition group">
+                            <span class="font-black text-gray-800 text-2xl group-hover:text-blue-600 transition flex items-center">
+                                <span class="bg-blue-100 text-blue-600 px-3 py-1 rounded-lg mr-4 text-lg">Q3</span>
+                                온라인 강의는 어떻게 진행되며, 직장인도 수강이 가능한가요?
+                            </span>
+                            <span class="w-10 h-10 flex items-center justify-center rounded-full bg-gray-100 group-hover:bg-blue-100 text-gray-400 group-hover:text-blue-600 transition">
+                                <i class="fas fa-chevron-down transition-transform duration-300 text-xl" :class="{ 'rotate-180': open }"></i>
+                            </span>
                         </button>
-                        <div x-show="open" x-collapse class="px-6 pb-6 text-gray-600 bg-gray-50/50 leading-relaxed">
-                            <ul class="list-disc pl-5 space-y-2">
-                                <li><strong>학기:</strong> 1년 3학기제 (1월, 5월, 9월 개강)</li>
-                                <li><strong>구성:</strong> 1과목당 3학점, 45시간 동영상 강의, Reading Assignments, 온라인 포럼</li>
-                                <li><strong>기간:</strong> 과목당 16주차 과정</li>
-                                <li><strong>언어:</strong> 한국어와 영어 동시 제공 (한국어 수강 가능)</li>
+                        <div x-show="open" x-collapse class="px-10 pb-10 text-xl text-gray-600 bg-gray-50/50 leading-loose">
+                            네, 직장인 및 시니어 분들도 충분히 수강 가능하도록 설계되어 있습니다.<br><br>
+                            <ul class="list-disc pl-6 space-y-2">
+                                <li><strong>학기 운영:</strong> 1년 3학기제 (1월, 5월, 9월 개강)로 빠른 학위 취득이 가능합니다.</li>
+                                <li><strong>강의 구성:</strong> 1과목당 3학점, 45시간 동영상 강의, Reading Assignments, 온라인 포럼으로 구성됩니다.</li>
+                                <li><strong>유연성:</strong> 시간과 장소에 구애받지 않고 원하는 시간에 수강할 수 있습니다.</li>
+                                <li><strong>언어:</strong> 모든 과정은 한국어로 진행되며, 시스템 또한 사용자 친화적입니다.</li>
                             </ul>
-                            <p class="mt-2">중장년 시니어 학생들도 쉽게 이용할 수 있는 사용자 친화적인 온라인 캠퍼스를 운영합니다.</p>
+                            <p class="mt-4 p-5 bg-yellow-50 rounded-xl text-yellow-900 font-bold border border-yellow-200">
+                                <i class="fas fa-check-circle mr-2"></i> 디지털 기기에 익숙하지 않은 분들도 쉽게 따라오실 수 있도록 지원합니다.
+                            </p>
                         </div>
                     </div>
+
                     <!-- FAQ 4 -->
                     <div class="faq-item" x-data="{ open: false }">
-                        <button @click="open = !open" class="flex justify-between items-center w-full p-6 text-left hover:bg-gray-50 transition">
-                            <span class="font-bold text-gray-800 text-lg">Q. 논문은 영어로 써야 하나요?</span>
-                            <i class="fas fa-chevron-down text-gray-400 transition-transform" :class="{ 'rotate-180': open }"></i>
+                        <button @click="open = !open" class="flex justify-between items-center w-full p-10 text-left hover:bg-gray-50 transition group">
+                            <span class="font-black text-gray-800 text-2xl group-hover:text-blue-600 transition flex items-center">
+                                <span class="bg-blue-100 text-blue-600 px-3 py-1 rounded-lg mr-4 text-lg">Q4</span>
+                                논문 작성에 대한 부담이 큽니다. 영어로 써야 하나요?
+                            </span>
+                            <span class="w-10 h-10 flex items-center justify-center rounded-full bg-gray-100 group-hover:bg-blue-100 text-gray-400 group-hover:text-blue-600 transition">
+                                <i class="fas fa-chevron-down transition-transform duration-300 text-xl" :class="{ 'rotate-180': open }"></i>
+                            </span>
                         </button>
-                        <div x-show="open" x-collapse class="px-6 pb-6 text-gray-600 bg-gray-50/50 leading-relaxed">
-                            논문은 한국어로 작성한 후 영어로 번역하는 방식이 가능합니다. 이를 통해 언어 장벽 없이 심도 있는 연구가 가능합니다. 단, 박사 과정의 최종 학위 논문은 영어로 제출되어야 합니다.
+                        <div x-show="open" x-collapse class="px-10 pb-10 text-xl text-gray-600 bg-gray-50/50 leading-loose">
+                            언어적 부담을 최소화했습니다. 논문은 <strong>한국어로 작성한 후 영어로 번역</strong>하는 방식이 가능합니다. 이를 통해 언어 장벽 없이 심도 있는 연구 내용을 담아낼 수 있습니다. <br><br>
+                            단, 박사 과정의 최종 학위 논문은 영어로 제출되어야 하지만, 정진혁 교수님의 <strong>'AI 학술 연구방법론'</strong> 과목을 통해 번역 및 논문 작성에 AI 도구를 활용하는 법을 배우므로 훨씬 수월하게 진행할 수 있습니다.
                         </div>
                     </div>
                 </div>
@@ -313,61 +475,67 @@
     </section>
 
     <!-- Detailed Curriculum & PBL -->
-    <section id="curriculum" class="py-24 bg-white relative overflow-hidden">
+    <section id="curriculum" class="py-32 bg-white relative overflow-hidden">
         <!-- Decoration -->
-        <div class="absolute top-0 right-0 w-1/3 h-full bg-blue-50/50 -skew-x-12 transform translate-x-20 z-0"></div>
+        <div class="absolute top-0 right-0 w-1/3 h-full bg-blue-50/30 -skew-x-12 transform translate-x-20 z-0 pointer-events-none"></div>
 
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-            <div class="mb-16">
-                <span class="text-blue-600 font-bold tracking-wider uppercase text-sm">Core Methodology</span>
-                <h2 class="text-3xl sm:text-4xl font-bold text-gray-900 mt-2">AI-PBL & 리터러시</h2>
-                <p class="text-gray-600 mt-4 text-lg">이론을 넘어 실전 문제 해결 능력을 기르는 캐롤라인만의 교육 철학</p>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 reveal">
+            <div class="mb-20">
+                <span class="text-blue-600 font-bold tracking-wider uppercase text-lg bg-blue-50 px-4 py-2 rounded-lg inline-block mb-4 shadow-sm">Core Methodology</span>
+                <h2 class="text-4xl md:text-6xl font-black text-gray-900 mt-2">AI-PBL & 리터러시: 독창적 커리큘럼</h2>
+                <p class="text-gray-600 mt-6 text-2xl leading-relaxed">단순 지식 습득을 넘어 <span class="highlight-blue">실전 문제 해결 능력</span>을 기르는<br>정진혁 교수만의 독보적인 교육 철학을 소개합니다.</p>
             </div>
 
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-20">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 mb-24">
                 <!-- AI Literacy -->
-                <div class="bg-white rounded-2xl shadow-lg border border-gray-100 p-8 card-hover">
-                    <div class="w-14 h-14 bg-blue-100 rounded-xl flex items-center justify-center text-blue-600 mb-6">
-                        <i class="fas fa-brain text-2xl"></i>
+                <div class="bg-white rounded-[3rem] shadow-2xl border-t-[12px] border-blue-500 p-12 card-hover relative overflow-hidden group">
+                    <div class="absolute -right-10 -top-10 w-40 h-40 bg-blue-50 rounded-full group-hover:scale-150 transition duration-500 z-0"></div>
+                    <div class="relative z-10">
+                        <div class="w-20 h-20 bg-blue-100 rounded-3xl flex items-center justify-center text-blue-600 mb-10 shadow-md">
+                            <i class="fas fa-brain text-4xl"></i>
+                        </div>
+                        <h3 class="text-3xl font-black text-gray-900 mb-8">인공지능 리터러시 (AI Literacy)</h3>
+                        <p class="text-xl text-gray-600 leading-loose mb-8">
+                            AI 리터러시는 단순히 챗GPT 사용법을 배우는 것이 아닙니다. <strong>AI를 이해하고, 그 결과를 비판적으로 평가하며, 비즈니스 목적에 맞게 효과적으로 통제하는 능력</strong>입니다.
+                        </p>
+                        <ul class="space-y-6 text-gray-700 text-xl">
+                            <li class="flex items-start"><i class="fas fa-check-circle text-green-500 mt-1 mr-4 text-2xl"></i> AI 작동 원리와 한계에 대한 명확한 이해</li>
+                            <li class="flex items-start"><i class="fas fa-check-circle text-green-500 mt-1 mr-4 text-2xl"></i> 프롬프트 엔지니어링을 통한 최적의 결과 도출</li>
+                            <li class="flex items-start"><i class="fas fa-check-circle text-green-500 mt-1 mr-4 text-2xl"></i> AI의 윤리적 사용 및 디지털 시민 의사결정</li>
+                        </ul>
                     </div>
-                    <h3 class="text-2xl font-bold text-gray-900 mb-4">인공지능 리터러시 (AI Literacy)</h3>
-                    <p class="text-gray-600 leading-relaxed mb-4">
-                        AI 리터러시는 단순히 기술을 아는 것을 넘어, <strong>AI를 이해하고, 평가하며, 효과적으로 활용할 수 있는 능력</strong>입니다.
-                    </p>
-                    <ul class="space-y-2 text-gray-600 text-sm">
-                        <li class="flex items-start"><i class="fas fa-check text-green-500 mt-1 mr-2"></i> AI 시스템의 기본 원리와 한계 이해</li>
-                        <li class="flex items-start"><i class="fas fa-check text-green-500 mt-1 mr-2"></i> 사회적/윤리적 영향 비판적 평가</li>
-                        <li class="flex items-start"><i class="fas fa-check text-green-500 mt-1 mr-2"></i> 디지털 시민으로서의 필수 의사결정 역량</li>
-                    </ul>
                 </div>
 
                 <!-- PBL -->
-                <div class="bg-white rounded-2xl shadow-lg border border-gray-100 p-8 card-hover">
-                    <div class="w-14 h-14 bg-indigo-100 rounded-xl flex items-center justify-center text-indigo-600 mb-6">
-                        <i class="fas fa-project-diagram text-2xl"></i>
-                    </div>
-                    <h3 class="text-2xl font-bold text-gray-900 mb-4">프로젝트 기반 학습 (PBL)</h3>
-                    <p class="text-gray-600 leading-relaxed mb-4">
-                        학생들이 실제 문제나 과제를 중심으로 주도적으로 학습하며 <strong>실질적인 결과물(Output)</strong>을 만들어내는 교육 방식입니다.
-                    </p>
-                    <div class="bg-gray-50 p-4 rounded-lg text-sm border-l-4 border-indigo-500">
-                        <p class="font-bold text-indigo-900 mb-1">Problem vs Project?</p>
-                        <p class="text-gray-600">Problem-Based는 가상의 시나리오와 문제 해결 과정에 집중하는 반면, <strong>Project-Based(PBL)는 실제 세계의 문제와 결과물 제작</strong>에 중점을 둡니다.</p>
+                <div class="bg-white rounded-[3rem] shadow-2xl border-t-[12px] border-indigo-500 p-12 card-hover relative overflow-hidden group">
+                    <div class="absolute -right-10 -top-10 w-40 h-40 bg-indigo-50 rounded-full group-hover:scale-150 transition duration-500 z-0"></div>
+                     <div class="relative z-10">
+                        <div class="w-20 h-20 bg-indigo-100 rounded-3xl flex items-center justify-center text-indigo-600 mb-10 shadow-md">
+                            <i class="fas fa-project-diagram text-4xl"></i>
+                        </div>
+                        <h3 class="text-3xl font-black text-gray-900 mb-8">프로젝트 기반 학습 (PBL)</h3>
+                        <p class="text-xl text-gray-600 leading-loose mb-8">
+                            주입식 교육은 죽었습니다. PBL은 실제 기업의 문제나 사회적 과제를 주제로 삼아, <span class="highlight bg-indigo-100 text-indigo-900">실질적인 해결책(Output)</span>을 만들어내는 과정 중심 교육입니다.
+                        </p>
+                        <div class="bg-gray-50 p-8 rounded-3xl text-lg border-l-8 border-indigo-500 shadow-inner">
+                            <p class="font-black text-indigo-900 mb-4 text-xl">Problem vs Project?</p>
+                            <p class="text-gray-700 leading-relaxed"><strong>Problem-Based</strong>는 가상의 시나리오 해결에 그치지만, <strong>Project-Based(PBL)</strong>는 <span class="font-bold underline">현실 세계의 문제를 해결하고 실제 결과물을 제작</span>하는 데 중점을 둡니다. 이것이 진짜 실력입니다.</p>
+                        </div>
                     </div>
                 </div>
             </div>
 
             <!-- Curriculum Roadmap SVG -->
-            <div class="mb-16">
-                <h3 class="text-2xl font-bold text-gray-900 mb-8 text-center">정진혁 교수의 AI 융합 마스터 로드맵</h3>
-                <div class="relative w-full max-w-5xl mx-auto bg-gray-900 rounded-3xl p-8 shadow-2xl overflow-hidden">
+            <div class="mb-20">
+                <h3 class="text-4xl font-black text-gray-900 mb-12 text-center flex justify-center items-center"><i class="fas fa-road mr-4 text-blue-600"></i>정진혁 교수의 AI 융합 마스터 로드맵</h3>
+                <div class="relative w-full max-w-6xl mx-auto bg-slate-900 rounded-[2.5rem] p-12 shadow-2xl overflow-hidden border border-slate-700">
                      <svg viewBox="0 0 900 400" class="w-full h-auto">
                         <defs>
                             <marker id="arrow" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
                                 <polygon points="0 0, 10 3.5, 0 7" fill="#60a5fa" />
                             </marker>
                             <filter id="glow">
-                                <feGaussianBlur stdDeviation="2.5" result="coloredBlur"/>
+                                <feGaussianBlur stdDeviation="3.5" result="coloredBlur"/>
                                 <feMerge>
                                     <feMergeNode in="coloredBlur"/>
                                     <feMergeNode in="SourceGraphic"/>
@@ -376,119 +544,135 @@
                         </defs>
 
                         <!-- Connecting Lines -->
-                        <path d="M150 200 L350 200" stroke="#3b82f6" stroke-width="2" class="flow-line" marker-end="url(#arrow)"/>
-                        <path d="M550 200 L750 200" stroke="#3b82f6" stroke-width="2" class="flow-line" marker-end="url(#arrow)"/>
-                        <path d="M450 100 L450 300" stroke="#3b82f6" stroke-width="2" class="flow-line" />
-                        <circle cx="450" cy="200" r="100" fill="none" stroke="#2563eb" stroke-width="1" opacity="0.5"/>
+                        <path d="M150 200 L350 200" stroke="#3b82f6" stroke-width="4" class="flow-line" marker-end="url(#arrow)"/>
+                        <path d="M550 200 L750 200" stroke="#3b82f6" stroke-width="4" class="flow-line" marker-end="url(#arrow)"/>
+                        <path d="M450 100 L450 300" stroke="#3b82f6" stroke-width="4" class="flow-line" />
+                        <circle cx="450" cy="200" r="110" fill="none" stroke="#2563eb" stroke-width="2" opacity="0.3"/>
 
                         <!-- Center Hub -->
-                        <circle cx="450" cy="200" r="60" fill="#1e3a8a" stroke="#60a5fa" stroke-width="3" filter="url(#glow)">
-                            <animate attributeName="r" values="60;65;60" dur="3s" repeatCount="indefinite" />
+                        <circle cx="450" cy="200" r="70" fill="#1e3a8a" stroke="#60a5fa" stroke-width="4" filter="url(#glow)">
+                            <animate attributeName="r" values="70;75;70" dur="3s" repeatCount="indefinite" />
                         </circle>
-                        <text x="450" y="195" text-anchor="middle" fill="white" font-weight="bold" font-size="14">AI 융합</text>
-                        <text x="450" y="215" text-anchor="middle" fill="#93c5fd" font-size="12">Core Business</text>
+                        <text x="450" y="195" text-anchor="middle" fill="white" font-weight="900" font-size="18">AI 융합</text>
+                        <text x="450" y="220" text-anchor="middle" fill="#93c5fd" font-size="14" font-weight="bold">Core Business</text>
 
                         <!-- Nodes -->
                         <!-- 1. Literacy -->
                         <g transform="translate(150, 200)">
-                            <rect x="-90" y="-35" width="180" height="70" rx="10" fill="#1e293b" stroke="#475569" stroke-width="2"/>
-                            <text x="0" y="-5" text-anchor="middle" fill="white" font-weight="bold">AI 리터러시 1 & 2</text>
-                            <text x="0" y="15" text-anchor="middle" fill="#94a3b8" font-size="11">비즈니스 모델 / 기초 활용</text>
+                            <rect x="-100" y="-40" width="200" height="80" rx="15" fill="#1e293b" stroke="#475569" stroke-width="3"/>
+                            <text x="0" y="-5" text-anchor="middle" fill="white" font-weight="bold" font-size="16">AI 리터러시 1 & 2</text>
+                            <text x="0" y="20" text-anchor="middle" fill="#94a3b8" font-size="12">비즈니스 모델 / 기초 활용</text>
                         </g>
 
                         <!-- 2. PBL -->
                         <g transform="translate(750, 200)">
-                            <rect x="-90" y="-35" width="180" height="70" rx="10" fill="#1e293b" stroke="#475569" stroke-width="2"/>
-                            <text x="0" y="-5" text-anchor="middle" fill="white" font-weight="bold">AI-PBL</text>
-                            <text x="0" y="15" text-anchor="middle" fill="#94a3b8" font-size="11">프로젝트 기반 학습</text>
+                            <rect x="-100" y="-40" width="200" height="80" rx="15" fill="#1e293b" stroke="#475569" stroke-width="3"/>
+                            <text x="0" y="-5" text-anchor="middle" fill="white" font-weight="bold" font-size="16">AI-PBL</text>
+                            <text x="0" y="20" text-anchor="middle" fill="#94a3b8" font-size="12">프로젝트 기반 학습</text>
                         </g>
 
                         <!-- 3. Academic -->
                         <g transform="translate(450, 80)">
-                            <rect x="-80" y="-30" width="160" height="60" rx="10" fill="#1e293b" stroke="#475569" stroke-width="2"/>
-                            <text x="0" y="5" text-anchor="middle" fill="white" font-weight="bold">AI 학술 연구방법론</text>
+                            <rect x="-90" y="-35" width="180" height="70" rx="15" fill="#1e293b" stroke="#475569" stroke-width="3"/>
+                            <text x="0" y="5" text-anchor="middle" fill="white" font-weight="bold" font-size="16">AI 학술 연구방법론</text>
                         </g>
 
                         <!-- 4. Problem Solving -->
                         <g transform="translate(450, 320)">
-                            <rect x="-90" y="-30" width="180" height="60" rx="10" fill="#1e293b" stroke="#475569" stroke-width="2"/>
-                            <text x="0" y="5" text-anchor="middle" fill="white" font-weight="bold">AI Problem Solving</text>
+                            <rect x="-90" y="-35" width="180" height="70" rx="15" fill="#1e293b" stroke="#475569" stroke-width="3"/>
+                            <text x="0" y="5" text-anchor="middle" fill="white" font-weight="bold" font-size="16">AI Problem Solving</text>
                         </g>
                     </svg>
                 </div>
             </div>
 
             <!-- 5 Core Subjects List -->
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                <div class="bg-gray-50 p-6 rounded-xl">
-                    <h4 class="font-bold text-gray-900 mb-2">1. AI 리터러시 (비즈니스)</h4>
-                    <p class="text-sm text-gray-600">AI 기술을 비즈니스에 접목하여 새로운 가치를 창출하는 모델 설계, 시장 분석 및 수익화 전략</p>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+                <div class="bg-gray-50 p-10 rounded-[2.5rem] hover:bg-white hover:shadow-2xl transition duration-300 border border-transparent hover:border-gray-200 group">
+                    <h4 class="font-black text-gray-900 text-2xl mb-4 flex items-center group-hover:text-blue-600 transition"><span class="w-10 h-10 bg-blue-600 text-white rounded-full flex items-center justify-center text-base mr-4 shadow-lg">1</span> AI 리터러시 1<br>(비즈니스 모델)</h4>
+                    <p class="text-lg text-gray-600 leading-relaxed">단순 기술 학습을 넘어, AI를 활용해 돈을 벌고 가치를 창출하는 <strong>비즈니스 모델링 방법론</strong>을 학습합니다. 수익화 전략과 시장 분석의 새로운 틀을 제시합니다.</p>
                 </div>
-                <div class="bg-gray-50 p-6 rounded-xl">
-                    <h4 class="font-bold text-gray-900 mb-2">2. AI 리터러시 (기초 활용)</h4>
-                    <p class="text-sm text-gray-600">생성형 AI(ChatGPT 등) 프롬프트 엔지니어링 및 실무 도구 활용법 마스터</p>
+                <div class="bg-gray-50 p-10 rounded-[2.5rem] hover:bg-white hover:shadow-2xl transition duration-300 border border-transparent hover:border-gray-200 group">
+                    <h4 class="font-black text-gray-900 text-2xl mb-4 flex items-center group-hover:text-blue-600 transition"><span class="w-10 h-10 bg-blue-600 text-white rounded-full flex items-center justify-center text-base mr-4 shadow-lg">2</span> AI 리터러시 2<br>(기초 및 심화 활용)</h4>
+                    <p class="text-lg text-gray-600 leading-relaxed">ChatGPT, Claude, Midjourney 등 <strong>생성형 AI의 프롬프트 엔지니어링</strong>을 마스터합니다. 업무 자동화와 생산성을 10배 높이는 실전 도구 활용법을 전수합니다.</p>
                 </div>
-                <div class="bg-gray-50 p-6 rounded-xl border-2 border-blue-200">
-                    <h4 class="font-bold text-blue-900 mb-2">3. AI-PBL (프로젝트)</h4>
-                    <p class="text-sm text-gray-600">팀 단위로 실제 기업 문제를 AI 솔루션으로 해결하는 전 과정(Full-cycle) 경험</p>
+                <div class="bg-white p-10 rounded-[2.5rem] shadow-2xl border-4 border-blue-600 relative overflow-hidden group">
+                    <div class="absolute top-0 right-0 bg-blue-600 text-white text-sm font-bold px-4 py-2 rounded-bl-xl shadow-md">핵심 과목</div>
+                    <h4 class="font-black text-blue-900 text-2xl mb-4 flex items-center"><span class="w-10 h-10 bg-blue-600 text-white rounded-full flex items-center justify-center text-base mr-4 shadow-lg">3</span> AI-PBL<br>(프로젝트 기반 학습)</h4>
+                    <p class="text-lg text-gray-700 leading-relaxed font-medium">본 과정의 꽃입니다. 팀 단위로 실제 기업의 문제를 선정하고, AI 솔루션으로 해결하는 <strong>Full-Cycle 프로젝트</strong>를 수행합니다. 포트폴리오로 직결되는 결과물을 만듭니다.</p>
                 </div>
-                <div class="bg-gray-50 p-6 rounded-xl">
-                    <h4 class="font-bold text-gray-900 mb-2">4. AI 학술 연구방법론</h4>
-                    <p class="text-sm text-gray-600">AI를 활용한 논문 작성, 데이터 분석, 선행 연구 탐색 등 연구 효율성 극대화</p>
+                <div class="bg-gray-50 p-10 rounded-[2.5rem] hover:bg-white hover:shadow-2xl transition duration-300 border border-transparent hover:border-gray-200 group">
+                    <h4 class="font-black text-gray-900 text-2xl mb-4 flex items-center group-hover:text-gray-600 transition"><span class="w-10 h-10 bg-gray-600 text-white rounded-full flex items-center justify-center text-base mr-4 shadow-lg">4</span> AI 학술 연구방법론</h4>
+                    <p class="text-lg text-gray-600 leading-relaxed">논문 작성의 두려움을 없애드립니다. AI를 활용한 선행 연구 탐색, 데이터 분석, 초안 작성 등 <strong>연구 효율성을 극대화하는 혁신적 방법론</strong>을 배웁니다.</p>
                 </div>
-                <div class="bg-gray-50 p-6 rounded-xl">
-                    <h4 class="font-bold text-gray-900 mb-2">5. AI 문제해결 방법론</h4>
-                    <p class="text-sm text-gray-600">복잡한 비즈니스/사회 문제를 AI적 사고(Computational Thinking)로 정의하고 해결</p>
+                <div class="bg-gray-50 p-10 rounded-[2.5rem] hover:bg-white hover:shadow-2xl transition duration-300 border border-transparent hover:border-gray-200 group">
+                    <h4 class="font-black text-gray-900 text-2xl mb-4 flex items-center group-hover:text-gray-600 transition"><span class="w-10 h-10 bg-gray-600 text-white rounded-full flex items-center justify-center text-base mr-4 shadow-lg">5</span> AI 문제해결 방법론</h4>
+                    <p class="text-lg text-gray-600 leading-relaxed">복잡한 사회 및 비즈니스 난제를 <strong>컴퓨테이셔널 씽킹(Computational Thinking)</strong>으로 정의하고, AI적 사고로 해결책을 도출하는 훈련을 반복합니다.</p>
                 </div>
-                <!-- Extra: AI Global Strategy -->
-                 <div class="bg-gray-50 p-6 rounded-xl">
-                    <h4 class="font-bold text-gray-900 mb-2">6. AI 글로벌 성공 전략</h4>
-                    <p class="text-sm text-gray-600">엔비디아, 구글 등 글로벌 선도 기업의 AI 전략 사례 분석 및 벤치마킹</p>
+                 <div class="bg-gray-50 p-10 rounded-[2.5rem] hover:bg-white hover:shadow-2xl transition duration-300 border border-transparent hover:border-gray-200 group">
+                    <h4 class="font-black text-gray-900 text-2xl mb-4 flex items-center group-hover:text-gray-600 transition"><span class="w-10 h-10 bg-gray-600 text-white rounded-full flex items-center justify-center text-base mr-4 shadow-lg">6</span> AI 글로벌 성공 전략</h4>
+                    <p class="text-lg text-gray-600 leading-relaxed">엔비디아, MS, 구글 등 <strong>글로벌 빅테크 기업의 AI 전략</strong>을 심층 분석하고, 이를 벤치마킹하여 나만의 비즈니스 인사이트로 체화합니다.</p>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Tuition & Scholarship Info -->
-    <section id="tuition" class="py-24 bg-blue-900 text-white">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-16">
-                <h2 class="text-3xl font-bold mb-4">합리적인 학비 & 파격적인 장학 혜택</h2>
-                <p class="text-blue-200">미국 사립대학교 학위를 국내 대학 수준의 비용으로 취득할 수 있는 기회</p>
+    <section id="tuition" class="py-32 bg-gradient-to-br from-blue-900 via-indigo-900 to-slate-900 text-white relative overflow-hidden reveal">
+        <!-- Background Elements -->
+        <div class="absolute top-0 left-0 w-full h-full bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-10"></div>
+        <div class="absolute -top-20 -left-20 w-96 h-96 bg-blue-500 rounded-full blur-[100px] opacity-20"></div>
+        <div class="absolute -bottom-20 -right-20 w-96 h-96 bg-purple-500 rounded-full blur-[100px] opacity-20"></div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="text-center mb-20">
+                <h2 class="text-4xl md:text-6xl font-black mb-6 drop-shadow-lg">합리적인 학비 & 파격적인 장학 혜택</h2>
+                <p class="text-2xl text-blue-200 max-w-3xl mx-auto leading-relaxed">미국 사립대학교의 명품 학위를<br><strong>국내 대학원 수준의 경제적인 비용</strong>으로 취득할 수 있는 유일한 기회입니다.</p>
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12 lg:gap-20">
                 <!-- Tuition -->
-                <div class="bg-white text-gray-900 p-8 rounded-2xl shadow-2xl">
-                    <h3 class="text-2xl font-bold text-blue-900 mb-6 border-b border-gray-200 pb-4">2025년 학비 정보</h3>
-                    <div class="space-y-4">
-                        <div class="flex justify-between items-center">
-                            <span class="text-gray-500">기본 학비 (학기당)</span>
-                            <span class="text-lg font-medium text-gray-400 line-through">$5,000</span>
+                <div class="bg-white text-gray-900 p-12 rounded-[3rem] shadow-2xl relative overflow-hidden transform hover:scale-[1.02] transition duration-500 border-4 border-white/10">
+                    <div class="absolute top-0 left-0 w-full h-6 bg-blue-600"></div>
+                    <h3 class="text-3xl font-black text-blue-900 mb-10 border-b-2 border-gray-100 pb-6 flex items-center justify-between">
+                        2025년 학비 정보
+                        <i class="fas fa-money-bill-wave text-blue-400"></i>
+                    </h3>
+                    <div class="space-y-8">
+                        <div class="flex justify-between items-center opacity-40 hover:opacity-100 transition">
+                            <span class="text-xl font-medium">기본 학비 (학기당)</span>
+                            <span class="text-2xl font-bold line-through">$5,000</span>
                         </div>
-                        <div class="flex justify-between items-center p-4 bg-blue-50 rounded-xl">
-                            <span class="font-bold text-blue-900">2025년 특별 고정 학비</span>
-                            <span class="text-3xl font-black text-blue-600">600만원</span>
+                        <div class="flex justify-between items-center p-8 bg-blue-50 rounded-3xl border border-blue-200 shadow-inner">
+                            <div>
+                                <span class="block font-black text-blue-900 text-2xl mb-1">2025년 특별 고정 학비</span>
+                                <span class="text-base text-blue-600 font-bold"><i class="fas fa-lock mr-1"></i>환율 무관 고정</span>
+                            </div>
+                            <span class="text-5xl font-black text-blue-600 tracking-tight">600만원</span>
                         </div>
-                        <p class="text-xs text-gray-500 mt-2">* 환율과 상관없이 고정된 금액입니다. (2026년부터는 변동 가능)</p>
+                        <p class="text-base text-gray-500 font-medium text-center bg-gray-50 py-3 rounded-xl border border-gray-100"><i class="fas fa-exclamation-circle mr-2"></i>2026년부터는 정책에 따라 변동 가능성이 있습니다.</p>
                     </div>
                 </div>
 
                 <!-- Scholarship -->
-                <div class="bg-white/10 backdrop-blur-md p-8 rounded-2xl border border-blue-400">
-                    <h3 class="text-2xl font-bold text-white mb-6 border-b border-blue-400/30 pb-4">특별 장학 혜택 (할인)</h3>
-                    <ul class="space-y-4">
-                        <li class="flex items-center justify-between">
-                            <span><i class="fas fa-check-circle text-green-400 mr-2"></i> 입시설명회 참석</span>
-                            <span class="font-bold text-yellow-400">10% 할인</span>
+                <div class="bg-white/10 backdrop-blur-xl p-12 rounded-[3rem] border border-blue-400/30 shadow-2xl relative overflow-hidden hover:bg-white/15 transition duration-500">
+                    <div class="absolute top-0 right-0 -mr-10 -mt-10 w-60 h-60 bg-blue-500/20 rounded-full blur-3xl"></div>
+                    <h3 class="text-3xl font-black text-white mb-10 border-b border-blue-400/30 pb-6 flex items-center justify-between">
+                        특별 장학 혜택
+                        <i class="fas fa-graduation-cap text-yellow-300"></i>
+                    </h3>
+                    <ul class="space-y-8">
+                        <li class="flex items-center justify-between group">
+                            <span class="text-xl flex items-center text-blue-100"><i class="fas fa-check-circle text-green-400 mr-4 text-2xl group-hover:scale-125 transition"></i> 입시설명회 참석 시</span>
+                            <span class="font-bold text-yellow-400 text-2xl bg-yellow-400/10 px-4 py-2 rounded-xl border border-yellow-400/20">10% 할인</span>
                         </li>
-                        <li class="flex items-center justify-between">
-                            <span><i class="fas fa-check-circle text-green-400 mr-2"></i> 교수 추천</span>
-                            <span class="font-bold text-yellow-400">10% 할인</span>
+                        <li class="flex items-center justify-between group">
+                            <span class="text-xl flex items-center text-blue-100"><i class="fas fa-check-circle text-green-400 mr-4 text-2xl group-hover:scale-125 transition"></i> 교수 추천 시</span>
+                            <span class="font-bold text-yellow-400 text-2xl bg-yellow-400/10 px-4 py-2 rounded-xl border border-yellow-400/20">10% 할인</span>
                         </li>
-                        <li class="mt-4 pt-4 border-t border-blue-400/30 flex items-center justify-between text-lg">
-                            <span class="font-bold">최대 할인 적용 시 (첫 학기)</span>
-                            <span class="font-black text-yellow-300 text-2xl">총 20% 할인</span>
+                        <li class="mt-10 pt-10 border-t-2 border-dashed border-blue-400/30 flex items-center justify-between">
+                            <span class="font-black text-2xl text-white">첫 학기 최대 혜택</span>
+                            <span class="font-black text-yellow-300 text-5xl drop-shadow-[0_0_15px_rgba(253,224,71,0.5)]">총 20% OFF</span>
                         </li>
                     </ul>
                 </div>
@@ -496,128 +680,125 @@
         </div>
     </section>
 
-    <!-- YouTube Video Section (Fixed) -->
-    <section class="py-20 bg-gray-100">
+    <!-- YouTube Video Section (Lecture Intro - JS Loader) -->
+    <section class="py-24 bg-gray-100 reveal">
         <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <h3 class="text-2xl font-bold text-gray-900 mb-8">
+            <h3 class="text-3xl font-bold text-gray-900 mb-10">
                 <i class="fab fa-youtube text-red-600 mr-2"></i> 캐롤라인대학교 AI 혁신 강의 소개
             </h3>
             
-            <div class="relative w-full rounded-2xl shadow-2xl overflow-hidden bg-black aspect-video">
-                <!-- YouTube Iframe -->
-                <iframe 
-                    class="absolute top-0 left-0 w-full h-full"
-                    src="https://www.youtube.com/embed/TJt8wlm5H8I?rel=0" 
-                    title="캐롤라인대학교 AI 혁신 강의"
-                    frameborder="0" 
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                    allowfullscreen>
-                </iframe>
+            <div class="relative w-full rounded-[2rem] shadow-2xl overflow-hidden bg-black border-4 border-white">
+                <!-- Click-to-Play Video Container -->
+                <!-- Video ID: TJt8wlm5H8I -->
+                <div class="video-wrapper standard-aspect" onclick="loadVideo(this, 'TJt8wlm5H8I')">
+                    <img src="https://img.youtube.com/vi/TJt8wlm5H8I/maxresdefault.jpg" alt="캐롤라인대학교 AI 혁신 강의 썸네일">
+                    <div class="play-button">
+                        <i class="fas fa-play text-white text-3xl ml-1"></i>
+                    </div>
+                    <div class="absolute inset-0 flex items-center justify-center pointer-events-none">
+                        <!-- Play button is positioned absolutely above -->
+                    </div>
+                </div>
             </div>
             
-            <div class="mt-6">
-                <p class="text-gray-600 mb-4 text-sm">※ 영상이 재생되지 않을 경우 아래 버튼을 클릭하세요.</p>
-                <a href="https://youtu.be/TJt8wlm5H8I?si=YXjxFWa2NGw0AqGo" target="_blank" class="inline-flex items-center px-6 py-3 bg-red-600 text-white font-bold rounded-lg hover:bg-red-700 transition">
-                    <i class="fab fa-youtube mr-2"></i> 유튜브에서 바로 보기
+            <div class="mt-10">
+                <a href="https://youtu.be/TJt8wlm5H8I?si=PBGCb0RVU5TJpOhQ" target="_blank" class="inline-flex items-center px-8 py-4 bg-red-600 text-white font-bold text-lg rounded-2xl hover:bg-red-700 transition shadow-lg hover:shadow-xl transform hover:-translate-y-1">
+                    <i class="fab fa-youtube mr-3 text-2xl"></i> 유튜브에서 바로 보기
                 </a>
             </div>
         </div>
     </section>
 
-    <!-- Admissions Guide -->
-    <section id="admission" class="py-24 bg-white">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 class="section-title text-3xl font-bold text-gray-900">입학 안내 및 지원</h2>
+    <!-- Admissions Guide (Expanded) -->
+    <section id="admission" class="py-32 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 reveal">
+            <h2 class="section-title text-4xl md:text-5xl font-black text-gray-900 mb-16 text-center">입학 안내 및 지원 절차</h2>
             
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 mt-8">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-20">
                 <!-- Required Documents -->
                 <div>
-                    <h3 class="text-xl font-bold text-gray-800 mb-6 flex items-center">
-                        <span class="w-8 h-8 bg-blue-100 text-blue-600 rounded-full flex items-center justify-center mr-3 text-sm">1</span>
+                    <h3 class="text-3xl font-black text-gray-900 mb-10 flex items-center">
+                        <span class="w-12 h-12 bg-blue-600 text-white rounded-2xl flex items-center justify-center mr-5 text-xl shadow-lg">1</span>
                         제출 서류 (석/박사 공통)
                     </h3>
-                    <div class="bg-gray-50 rounded-2xl p-8 border border-gray-100">
-                        <ul class="space-y-4 text-gray-700">
-                            <li class="flex items-center"><i class="fas fa-file-alt text-blue-500 w-6"></i> 입학 지원서 (본교 서식)</li>
-                            <li class="flex items-center"><i class="fas fa-graduation-cap text-blue-500 w-6"></i> 최종학교 졸업(예정) 증명서 (영문)</li>
-                            <li class="flex items-center"><i class="fas fa-chart-bar text-blue-500 w-6"></i> 최종학교 성적 증명서 (영문)</li>
-                            <li class="flex items-center"><i class="fas fa-passport text-blue-500 w-6"></i> 여권 사본</li>
-                            <li class="flex items-center"><i class="fas fa-user-tie text-blue-500 w-6"></i> 이력서 (CV)</li>
-                            <li class="flex items-center"><i class="fas fa-portrait text-blue-500 w-6"></i> 증명사진 (JPG)</li>
+                    <div class="bg-slate-50 rounded-[3rem] p-12 border border-slate-200 shadow-inner h-full">
+                        <ul class="space-y-6 text-gray-700 text-xl font-bold">
+                            <li class="flex items-center group"><div class="bg-white p-3 rounded-xl shadow-sm mr-5 group-hover:scale-110 transition duration-300 border border-gray-100"><i class="fas fa-file-alt text-blue-500 text-2xl"></i></div> 입학 지원서 (본교 서식)</li>
+                            <li class="flex items-center group"><div class="bg-white p-3 rounded-xl shadow-sm mr-5 group-hover:scale-110 transition duration-300 border border-gray-100"><i class="fas fa-graduation-cap text-blue-500 text-2xl"></i></div> 최종학교 졸업(예정) 증명서 (영문)</li>
+                            <li class="flex items-center group"><div class="bg-white p-3 rounded-xl shadow-sm mr-5 group-hover:scale-110 transition duration-300 border border-gray-100"><i class="fas fa-chart-bar text-blue-500 text-2xl"></i></div> 최종학교 성적 증명서 (영문)</li>
+                            <li class="flex items-center group"><div class="bg-white p-3 rounded-xl shadow-sm mr-5 group-hover:scale-110 transition duration-300 border border-gray-100"><i class="fas fa-passport text-blue-500 text-2xl"></i></div> 여권 사본</li>
+                            <li class="flex items-center group"><div class="bg-white p-3 rounded-xl shadow-sm mr-5 group-hover:scale-110 transition duration-300 border border-gray-100"><i class="fas fa-user-tie text-blue-500 text-2xl"></i></div> 이력서 (CV)</li>
+                            <li class="flex items-center group"><div class="bg-white p-3 rounded-xl shadow-sm mr-5 group-hover:scale-110 transition duration-300 border border-gray-100"><i class="fas fa-portrait text-blue-500 text-2xl"></i></div> 증명사진 (JPG)</li>
                         </ul>
                     </div>
                 </div>
 
                 <!-- Process & CTA -->
-                <div>
-                    <h3 class="text-xl font-bold text-gray-800 mb-6 flex items-center">
-                        <span class="w-8 h-8 bg-blue-100 text-blue-600 rounded-full flex items-center justify-center mr-3 text-sm">2</span>
-                        지원 절차 및 문의
-                    </h3>
-                    <div class="space-y-6">
-                        <div class="flex items-start">
-                            <div class="flex-shrink-0 pt-1">
-                                <i class="fas fa-chevron-circle-right text-blue-600"></i>
+                <div class="flex flex-col justify-between">
+                    <div>
+                        <h3 class="text-3xl font-black text-gray-900 mb-10 flex items-center">
+                            <span class="w-12 h-12 bg-blue-600 text-white rounded-2xl flex items-center justify-center mr-5 text-xl shadow-lg">2</span>
+                            지원 절차 및 문의
+                        </h3>
+                        <div class="space-y-10 pl-6 border-l-4 border-blue-100 ml-4">
+                            <div class="relative group">
+                                <div class="absolute -left-[35px] top-1 w-6 h-6 rounded-full bg-blue-600 ring-4 ring-white shadow-lg group-hover:scale-125 transition"></div>
+                                <p class="text-2xl font-black text-gray-900 mb-2">Step 1. 서류 준비</p>
+                                <p class="text-lg text-gray-600 leading-relaxed">위의 6가지 필수 서류들을 스캔하여 고해상도 PDF 또는 이미지 파일로 준비합니다.</p>
                             </div>
-                            <div class="ml-4">
-                                <p class="font-bold text-gray-900">Step 1. 서류 준비</p>
-                                <p class="text-sm text-gray-600">위의 서류들을 스캔하여 PDF 또는 이미지 파일로 준비합니다.</p>
+                            <div class="relative group">
+                                <div class="absolute -left-[35px] top-1 w-6 h-6 rounded-full bg-blue-600 ring-4 ring-white shadow-lg group-hover:scale-125 transition"></div>
+                                <p class="text-2xl font-black text-gray-900 mb-2">Step 2. 원서 접수</p>
+                                <p class="text-lg text-gray-600 leading-relaxed">정진혁 교수 이메일(<span class="font-bold text-blue-600 underline">8richfields@gmail.com</span>)로 준비된 서류를 발송합니다.</p>
                             </div>
-                        </div>
-                        <div class="flex items-start">
-                            <div class="flex-shrink-0 pt-1">
-                                <i class="fas fa-chevron-circle-right text-blue-600"></i>
-                            </div>
-                            <div class="ml-4">
-                                <p class="font-bold text-gray-900">Step 2. 원서 접수</p>
-                                <p class="text-sm text-gray-600">정진혁 교수 이메일 또는 학교 공식 접수처로 서류를 발송합니다.</p>
-                            </div>
-                        </div>
-                        <div class="flex items-start">
-                            <div class="flex-shrink-0 pt-1">
-                                <i class="fas fa-chevron-circle-right text-blue-600"></i>
-                            </div>
-                            <div class="ml-4">
-                                <p class="font-bold text-gray-900">Step 3. 심사 및 합격 통지</p>
-                                <p class="text-sm text-gray-600">서류 심사 후 합격 통지서와 등록금 고지서(인보이스)가 발송됩니다.</p>
+                            <div class="relative group">
+                                <div class="absolute -left-[35px] top-1 w-6 h-6 rounded-full bg-blue-600 ring-4 ring-white shadow-lg group-hover:scale-125 transition"></div>
+                                <p class="text-2xl font-black text-gray-900 mb-2">Step 3. 심사 및 합격 통지</p>
+                                <p class="text-lg text-gray-600 leading-relaxed">서류 심사 후 합격 통지서와 등록금 납부 고지서(Invoice)가 이메일로 발송됩니다.</p>
                             </div>
                         </div>
+                    </div>
 
-                        <div class="mt-8 pt-8 border-t border-gray-100">
-                             <a href="https://drive.google.com/drive/folders/1fTjwB8hA3g3ZdJSUTMHxtX0Fm7pnV2Dk?usp=sharing" target="_blank" class="w-full flex items-center justify-center px-8 py-4 bg-gray-900 text-white font-bold rounded-xl hover:bg-gray-800 transition shadow-lg group">
-                                <i class="fas fa-download mr-3 group-hover:animate-bounce"></i> 입학 지원 서류 패키지 다운로드
-                            </a>
-                            <p class="text-xs text-center text-gray-500 mt-2">* 클릭 시 구글 드라이브로 이동하여 양식을 다운로드할 수 있습니다.</p>
-                        </div>
+                    <div class="mt-16">
+                         <a href="https://drive.google.com/drive/folders/1fTjwB8hA3g3ZdJSUTMHxtX0Fm7pnV2Dk?usp=sharing" target="_blank" class="w-full flex items-center justify-center px-10 py-6 bg-slate-900 text-white font-bold text-2xl rounded-3xl hover:bg-black transition shadow-2xl hover:shadow-3xl group transform hover:-translate-y-2 duration-300">
+                            <i class="fas fa-download mr-5 text-3xl group-hover:animate-bounce"></i> 입학 지원 서류 다운로드
+                        </a>
+                        <p class="text-base text-center text-gray-500 mt-4 font-bold">* 클릭 시 구글 드라이브로 이동합니다.</p>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Footer Contact -->
-    <section id="contact" class="py-20 bg-blue-900 text-white text-center">
-        <div class="max-w-4xl mx-auto px-4">
-            <h2 class="text-3xl font-bold mb-6">미래는 예측하는 것이 아니라 만들어가는 것입니다.</h2>
-            <p class="text-blue-200 mb-12 text-lg">
-                정진혁 교수와 함께 AI 시대를 주도할 핵심 역량을 키우십시오.<br>
-                당신의 잠재력을 캐롤라인대학교에서 현실로 만드십시오.
+    <!-- Footer Contact (Expanded) -->
+    <section id="contact" class="py-32 bg-gradient-to-b from-slate-900 to-black text-white text-center relative reveal">
+        <div class="max-w-5xl mx-auto px-4 relative z-10">
+            <h2 class="text-4xl md:text-6xl font-black mb-8 leading-tight tracking-tight">미래는 예측하는 것이 아니라<br><span class="text-blue-500">만들어가는 것</span>입니다.</h2>
+            <p class="text-slate-300 mb-16 text-2xl font-light leading-relaxed">
+                정진혁 교수와 함께 AGI 시대를 주도할 핵심 역량을 키우십시오.<br>
+                당신의 무한한 잠재력을 <strong>캐롤라인대학교</strong>에서 현실로 만드십시오.
             </p>
 
-            <div class="bg-white/10 backdrop-blur-md rounded-2xl p-8 inline-block w-full max-w-lg border border-blue-400/30">
-                <h3 class="text-xl font-bold mb-6">입학 상담 문의</h3>
-                <div class="space-y-4">
-                    <div class="flex items-center justify-center gap-3">
-                        <i class="fas fa-user-circle text-2xl text-blue-300"></i>
-                        <span class="text-xl font-bold">정진혁 교수</span>
+            <div class="bg-white/10 backdrop-blur-2xl rounded-[3rem] p-16 inline-block w-full max-w-2xl border border-white/20 hover:border-blue-500/50 transition duration-500 shadow-2xl">
+                <h3 class="text-3xl font-black mb-10 text-blue-200">입학 상담 문의</h3>
+                <div class="space-y-8">
+                    <div class="flex items-center justify-center gap-6 group">
+                        <div class="w-16 h-16 rounded-full bg-blue-600/30 flex items-center justify-center group-hover:bg-blue-600 transition duration-300">
+                            <i class="fas fa-user-circle text-3xl text-blue-300 group-hover:text-white"></i>
+                        </div>
+                        <span class="text-3xl font-bold">정진혁 교수</span>
                     </div>
-                    <div class="flex items-center justify-center gap-3">
-                        <i class="fas fa-phone text-xl text-blue-300"></i>
-                        <a href="tel:01043058255" class="text-xl hover:text-blue-300 transition">010-4305-8255</a>
+                    <div class="flex items-center justify-center gap-6 group">
+                        <div class="w-16 h-16 rounded-full bg-blue-600/30 flex items-center justify-center group-hover:bg-blue-600 transition duration-300">
+                             <i class="fas fa-phone text-3xl text-blue-300 group-hover:text-white"></i>
+                        </div>
+                        <a href="tel:01043058255" class="text-3xl font-bold hover:text-blue-300 transition tracking-wide">010-4305-8255</a>
                     </div>
-                    <div class="flex items-center justify-center gap-3">
-                        <i class="fas fa-envelope text-xl text-blue-300"></i>
-                        <a href="mailto:8richfields@gmail.com" class="text-lg hover:text-blue-300 transition">8richfields@gmail.com</a>
+                    <div class="flex items-center justify-center gap-6 group">
+                        <div class="w-16 h-16 rounded-full bg-blue-600/30 flex items-center justify-center group-hover:bg-blue-600 transition duration-300">
+                            <i class="fas fa-envelope text-2xl text-blue-300 group-hover:text-white"></i>
+                        </div>
+                        <a href="mailto:8richfields@gmail.com" class="text-2xl font-medium hover:text-blue-300 transition">8richfields@gmail.com</a>
                     </div>
                 </div>
             </div>
@@ -625,13 +806,55 @@
     </section>
 
     <!-- Bottom Footer -->
-    <footer class="bg-gray-950 text-gray-500 py-8 text-sm">
+    <footer class="bg-black text-gray-500 py-12 text-base font-medium border-t border-gray-900">
         <div class="max-w-7xl mx-auto px-4 text-center">
-            <p class="mb-2">Caroline University | 3660 Wilshire Blvd, Suite 320, Los Angeles, CA 90010</p>
+            <div class="flex justify-center items-center gap-4 mb-4">
+                <i class="fas fa-university text-gray-700"></i>
+                <p>Caroline University | 3660 Wilshire Blvd, Suite 320, Los Angeles, CA 90010</p>
+            </div>
             <p>Accredited by TRACS (Transnational Association of Christian Colleges and Schools)</p>
-            <p class="mt-4 opacity-50">&copy; 2025 Caroline University AI Business Convergence Dept. All Rights Reserved.</p>
+            <p class="mt-8 opacity-40">&copy; 2025 Caroline University AI Business Convergence Dept. 정진혁 교수. All Rights Reserved.</p>
         </div>
     </footer>
 
+    <!-- Scripts for Scroll Animation & Video Loading -->
+    <script>
+        // Scroll Reveal Animation
+        window.addEventListener('scroll', reveal);
+        function reveal() {
+            var reveals = document.querySelectorAll('.reveal');
+            for (var i = 0; i < reveals.length; i++) {
+                var windowheight = window.innerHeight;
+                var revealtop = reveals[i].getBoundingClientRect().top;
+                var revealpoint = 150;
+                if (revealtop < windowheight - revealpoint) {
+                    reveals[i].classList.add('active');
+                }
+            }
+        }
+        // Trigger reveal on load
+        reveal();
+
+        // Video Loader Function (Click-to-Play)
+        function loadVideo(element, videoId) {
+            // Create the iframe HTML string
+            // Added playsinline=1 for better mobile handling
+            // Added web-share to allow list
+            var iframeHtml = '<iframe src="https://www.youtube.com/embed/' + videoId + '?autoplay=1&playsinline=1&rel=0&modestbranding=1" ' +
+                             'title="YouTube video player" ' +
+                             'frameborder="0" ' +
+                             'allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" ' +
+                             'allowfullscreen ' +
+                             'style="position:absolute; top:0; left:0; width:100%; height:100%; z-index:20;">' +
+                             '</iframe>';
+            
+            // Set the innerHTML
+            element.innerHTML = iframeHtml;
+            
+            // Remove the onclick attribute to prevent reloading
+            element.removeAttribute('onclick');
+            element.style.cursor = 'default';
+        }
+    </script>
 </body>
 </html>
